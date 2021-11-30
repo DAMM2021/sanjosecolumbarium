@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Columbarium - SJA Parish</title>
+
+
+    <style>
+        p{
+            font-family: 'Poppins', sans-serif;
+            font-style: italic;
+            font-size: 25px;
+        }
+    </style>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+          crossorigin="anonymous">
+
+
+
+</head>
+<body>
+<div class="container mt-5">
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">San Jose Parish </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href= "@{/reservation-lists}">Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/rental-list}">Rentals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/payment-list}">Payments</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <h1 align="center">Reservation of Slot is successfull!</h1>
+    <p align="center">Your rental extension for the slot in San Jose Parish Columbarium was successful.
+    we  <br> review your reservation and we will notify you via SMS. Please wait from 1-3 working days to review your Reservation</p>
+    <br>
+    <img style="align-content: center;" th:src="@{/css/images/success-green-check-mark.png}">
+    <br>
+    <form action="#" th:action="@{/admin}"  th:object="${payment}"
+          method="post" class="row g-3">
+
+    <div class="row">
+
+        <div class="col-lg-12 d-flex justify-content-center">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Payment Info
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Reservation Info
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" th:href= "@{/admin}">
+                    Home
+                </button>
+            </div>
+        </div>
+
+    </div>
+        <!-- Button trigger modal -->
+
+
+        <!-- Payment Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Reservation Info</h5>
+                        <button th:href="@{'/reserve-success/reserveInfo?reservationId=' + ${payment.id}}" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-control-label">Account Name</label>
+                            <input type="text" th:field="*{accountName}"
+                                   class="form-control" id="firstName" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Reference No.</label>
+                            <input type="text" th:field="*{reference_no}"
+                                   class="form-control" id="lastName" readonly>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Mobile Number/ GCash No.</label>
+                            <input type="text" th:field="*{mobile_number}"
+                                   class="form-control" id="dateRes" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Amount Paid</label>
+                            <input type="text" th:field="*{amountPaid}"
+                                   class="form-control" id="dateExp" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Payment Date</label>
+                            <input type="text"
+                                   class="form-control" id="slotNo" readonly>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Reserve Modal -->
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle1">Reservation Info</h5>
+                        <button th:href="@{'/reserve-success/reserveInfo?reservationId=' + ${payment.id}}" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-control-label">Account Name</label>
+                            <input type="text" th:field="*{accountName}"
+                                   class="form-control" id="firstName1" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Reference No.</label>
+                            <input type="text" th:field="*{reference_no}"
+                                   class="form-control" id="lastName1" readonly>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Mobile Number/ GCash No.</label>
+                            <input type="text" th:field="*{mobile_number}"
+                                   class="form-control" id="dateRes1" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Amount Paid</label>
+                            <input type="text" th:field="*{amountPaid}"
+                                   class="form-control" id="dateExp1" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-control-label">Payment Date</label>
+                            <input type="text"
+                                   class="form-control" id="slotNo1" readonly>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/css/js/script.js}"></script>
+
+</body>
+
+</html>

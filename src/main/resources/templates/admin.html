@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+                xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+
+    <script src="js/script.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+
+
+
+</head>
+<body>
+<div class="container">
+    <!-- Navigation -->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"></span>
+                    <span class="title"><h2>San Jose Parish</h2></span>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/user-lists}" sec:authorize="hasRole('Admin')">
+                    <span class="icon"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                    <span class="title">Users</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/reservation-lists}">
+                    <span class="icon"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                    <span class="title">Reserves</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/rental-list}">
+                    <span class="icon"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i></span>
+                    <span class="title">Rental</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/payment-list}">
+                    <span class="icon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                    <span class="title">Payments</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa fa-map-o"  aria-hidden="true"></i></span>
+                    <span class="title">Slot Map</span>
+                </a>
+            </li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <a>
+                        <span class="icon"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span>
+                        <input class="signout" type="submit" value="Sign Out">
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Topbar -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle" onclick="toggleMenu();"></div>
+            <div class="search">
+                <!--<label>
+                    <input type="text" placeholder="Search Here">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </label>-->
+            </div>
+           <!-- <div class="user">
+                <img src="images/logo.png">
+            </div>-->
+        </div>
+
+        <div>
+            <p style="padding-left: 10px;">
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+                <span sec:authentication="principal.authorities">Roles</span>
+            </p>
+        </div>
+
+
+
+        <!-- Card Box -->
+        <div class="cardBox">
+            <div class="card" id="cardReserves-btn">
+                <div >
+                    <!--<div class="numbers">48</div>-->
+                    <a th:href="@{/new-reservation}" class="cardName"> Add Reservation </a>
+                </div>
+                <div class="iconBox">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <!--<div class="numbers">42</div>-->
+                    <a th:href="@{/rental-list}" class="cardName"> Rentals </a>
+                    <div class="cardName"></div>
+                </div>
+                <div class="iconBox">
+                    <i class="fa fa-calendar-check-o"  aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <!--<div class="numbers">10</div>-->
+                    <a th:href="@{/payment-list}" class="cardName"> Payments </a>
+                    <div class="cardName"></div>
+                </div>
+                <div class="iconBox">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    function toggleMenu(){
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+        toggle.classList.toggle('active')
+        navigation.classList.toggle('active')
+        main.classList.toggle('active')
+    }
+</script>
+
+</body>
+</html>

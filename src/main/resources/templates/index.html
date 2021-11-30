@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Columbarium</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class="circle"></div>
+    <header>
+        <a href="#"><h2 class="logo">San Jose Parish</h2></a>
+        <ul>
+            <li><a th:href= "@{/}">Home</a></li>
+            <li><a th:href= "@{/}">Contact us</a></li>
+            <li><a th:href= "@{/}">About us</a></li>
+            <li><a th:href= "@{/login}">Login</a></li>
+        </ul>
+    </header>
+    <div class="content">
+        <div class="textBox">
+            <h2>Welcome to<br>San Jose Parish <span class="gtext"><font face="Arial Black">COLUMBARIUM</font></span>
+            </h2>
+            <p>A columbarium niche is a display vault in a wall or structure specifically designed to hold cremation
+                urns.
+                It’s a stately choice for a final disposition available at many cemeteries, churches, and funeral
+                homes.</p>
+            <a th:href= "@{/login}">Reserve Now</a>
+        </div>
+        <div class="imgbox">
+            <img th:src="@{/css/images/urn5.png}" class="urn">
+        </div>
+    </div>
+    <ul class="contact">
+        <li><a href="#"><img th:src="@{/css/images/fb2.png}"></a></li>
+        <li><a href="#"><img th:src="@{/css/images/email2.png}"></a></li>
+        <li><a href="#"><img th:src="@{/css/images/phone2.png}"></a></li>
+    </ul>
+</section>
+</body>
+</html>

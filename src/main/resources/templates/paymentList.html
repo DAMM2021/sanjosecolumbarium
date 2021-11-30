@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+          crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{/css/js/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#paymentTableId').DataTable();
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="container my-2">
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">San Jose Parish </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href= "@{/reservation-lists}">Rentals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/rental-list}">Rentals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/payment-list}">Payments</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Payment List</h1>
+
+    <!--<a th:href= "@{/reservation-lists}" class="btn btn-primary btn-sm mb-3">Reservation List</a>
+    <a th:href= "@{/rental-list}" class="btn btn-warning btn-sm mb-3"> Rentals</a>
+    <a th:href= "@{/payment-list}" class="btn btn-outline-dark btn-sm mb-3"> Payments</a>-->
+
+    <!--<form th:action="@{/payment-list}">
+        Search: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input type="submit" class="btn btn-info btn-sm mb-2" value="Search" />
+
+
+    </form>-->
+
+    <table border="1" class="table table striped table-responsive-md" id="paymentTableId">
+        <thead>
+        <tr>
+            <th>Account Name</th>
+            <th>Reference No.</th>
+            <th>GCash no./Mobile No.</th>
+            <th>Payment Receipt Image</th>
+            <th>Amount Paid</th>
+            <th>Owner</th>
+            <th>Reservation ID</th>
+            <th>Payment For:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="payment: ${listPayments}">
+            <td th:text="${payment.accountName}"></td>
+            <td th:text="${payment.reference_no}"></td>
+            <td th:text="${payment.mobile_number}"></td>
+            <td>
+                <a th:href="${'http://localhost/San-Jose-Parish-Columbarium/' + payment.payment_receipt_img}" target="_blank"th:text="${payment.payment_receipt_img}"></a>
+            </td>
+            <td th:text="${payment.amountPaid}"></td>
+            <td th:text="${payment.reserveId}"></td>
+            <td th:text="${payment.userId}"></td>
+            <td th:text="${payment.paymentFor}"></td>
+            <!--<td> <a  class="btn btn-primary">Update</a> </td>-->
+        </tbody>
+    </table>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rentals</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+          crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{/css/js/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#reservationTableId').DataTable();
+        });
+    </script>
+</head>
+<body>
+
+        <div class="container my-2">
+
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">San Jose Parish </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/admin}">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href= "@{/reservation-lists}">Reservation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href= "@{/rental-list}">Rentals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href= "@{/payment-list}">Payments</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <br>
+            <br>
+            <br>
+
+
+
+            <h1>Rental List</h1>
+
+            <!--<a th:href= "@{/reservation-lists}" class="btn btn-primary btn-sm mb-3">Reservation List</a>
+            <a th:href= "@{/rental-list}" class="btn btn-outline-dark mb-3"> Rentals</a>
+            <a th:href= "@{/payment-list}" class="btn btn-success btn-sm mb-3"> Payments</a>-->
+
+            <form th:action="@{/rental-list}">
+                Search: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                &nbsp;
+                <input type="submit" class="btn btn-info btn-sm mb-2" value="Search" />
+
+
+            </form>
+
+                <table border="1" class="table table striped table-responsive-md" id="reservationTableId">
+                    <thead>
+                        <tr>
+                            <th>Slot No.</th>
+                            <th>Date Rent</th>
+                            <th>Date Expired</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reservation: ${listRentals}">
+                        <td th:text="${reservation.slotNo}"></td>
+                        <td th:text="${reservation.dateReserve}"></td>
+                        <td th:text="${reservation.dateReserve}"></td>
+                        <td> <a th:href="@{/rental/payment}" class="btn btn-primary"> Pay Rental </a> </td>
+                    </tbody>
+                </table>
+
+        </div>
+
+</body>
+</html>

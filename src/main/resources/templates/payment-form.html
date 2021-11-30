@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Columbarium - SJA Parish</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5">
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">San Jose Parish </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href= "@{/reservation-lists}">Reservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/rental-list}">Rentals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href= "@{/payment-list}">Payments</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+
+
+    <h1>Payment Form</h1>
+    <h5><strong> Reservation Fee: PHP 500.00</strong></h5>
+    <form action="#" th:action="@{/new-reservation/payments/save}" th:object="${payment}"
+          method="post" enctype="multipart/form-data" class="row g-3">
+
+        <div>
+            <input type="hidden" th:name="reserveId" th:value="${#request.getParameter('reservationId')}"/>
+            <span th:text="${#request.getParameter('reservationId')}"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label for="accountName" class="form-label">Account Name</label>
+            <input type="text" th:field="*{accountName}"
+                   class="form-control" id="accountName" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="mobileNo" class="form-label">Mobile No.</label>
+            <input type="number" th:field="*{mobile_number}"
+                   class="form-control" id="mobileNo" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="refNo" class="form-label">Reference No.</label>
+            <input type="number" th:field="*{reference_no}"
+                   class="form-control" id="refNo" required>
+        </div>
+
+        <div class="col-md-2">
+            <label for="amntPaid" class="form-label">Amount Paid</label>
+            <input type="number" th:field="*{amountPaid}"
+                   class="form-control" id="amntPaid"
+                   placeholder="500.00" required>
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="paymentImageFile">GCash Receipt  Image/File</label>
+            <input type="file"
+                   class="form-control-file" id="paymentImageFile" name="paymentImageFile">
+        </div>
+
+
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" value="Next">
+            <a th:href="@{/reservation-lists}"> <input type="button" class="btn btn-danger" value="Cancel"> </a>
+        </div>
+
+
+
+
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

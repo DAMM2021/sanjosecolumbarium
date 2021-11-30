@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+          integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Choose your slot</h1>
+
+    <a th:href="@{/new-reservation}" class="btn btn-primary btn-sm mb-3"> Add Reservation</a>
+
+    <form action="#" th:action="@{/new-reservation/slot-map/save}" th:object="${reservation}" method="post">
+    <div align="center" class="a-column">
+        <div class="column-1">
+            <h5> A COLUMN</h5>
+            <div>
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="A1"
+                       aria-label="...">
+
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2" value="A2"
+                       aria-label="...">
+
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3" value="A3"
+                       aria-label="...">
+
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel4" value="A4"
+                       aria-label="...">
+
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel5" value="A5"
+                       aria-label="...">
+
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel6" value="A6"
+                       aria-label="...">
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel7" value="A7"
+                       aria-label="...">
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel8" value="A8"
+                       aria-label="...">
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel9" value="A9"
+                       aria-label="...">
+
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel10" value="A10"
+                       aria-label="...">
+
+
+            </div>
+        </div>
+    </div>
+        <br>
+        <br>
+        <br>
+        <div align="center" >
+            <input class="btn btn-primary btn-sm mb-3" type="submit" value="SAVE CHANGES">
+        </div>
+    </form>
+
+</body>
+</html>

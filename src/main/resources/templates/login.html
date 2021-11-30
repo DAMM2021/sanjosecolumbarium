@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - San Jose Parish Columbarium</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+
+</head>
+<body>
+<div class="center">
+    <h1>Login</h1>
+
+
+
+    <form th:action="@{/login}" method="post">
+
+        <div th:if="${param.error}" class="alert alert-error">
+            INVALID USERNAME AND PASSWORD
+        </div>
+
+        <div class="txt_field">
+            <input type="text" id="email" name="email" required>
+            <label for="email">USERNAME</label>
+        </div>
+
+        <div class="txt_field">
+            <input type="password" id="password" name="password" required>
+            <label for="password">PASSWORD</label>
+        </div>
+
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login">
+
+        <div class="signup_link">
+            Don't have account yet? <a th:href="@{/register}">Sign Up</a>
+        </div>
+
+    </form>
+
+
+
+</div>
+</body>
+</html>
